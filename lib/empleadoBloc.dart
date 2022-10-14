@@ -14,8 +14,10 @@ class EmpleadoBloc {
 
   // * 3.- Streams Controller
   final _empleadoListStreamController = StreamController<List<Empleado>>();
-  final _empleadoSalarioIncrementStreamController = StreamController<Empleado>();
-  final _empleadoSalarioDecrementStreamController = StreamController<Empleado>();
+  final _empleadoSalarioIncrementStreamController =
+      StreamController<Empleado>();
+  final _empleadoSalarioDecrementStreamController =
+      StreamController<Empleado>();
 
   // * 4.- Getters: Stream y Sink
   // tipo de getter | keyword GET |
@@ -36,26 +38,26 @@ class EmpleadoBloc {
   }
 
 // * 6.- Funciones principales (core functions)
-_incrementSalario(Empleado empleado) {
-  double salarioActual = empleado.salario;
-  double salarioIncrement = salarioActual * 20 / 100;
+  _incrementSalario(Empleado empleado) {
+    double salarioActual = empleado.salario;
+    double salarioIncrement = salarioActual * 20 / 100;
 
-  _empleadosList[empleado.id - 1].salario = salarioActual + salarioIncrement;
-  empleadoListSink.add(_empleadosList);
-}
+    _empleadosList[empleado.id - 1].salario = salarioActual + salarioIncrement;
+    empleadoListSink.add(_empleadosList);
+  }
 
-_decrementSalario(Empleado empleado) {
-  double salarioActual = empleado.salario;
-  double salarioDecrement = salarioActual * 20 / 100;
+  _decrementSalario(Empleado empleado) {
+    double salarioActual = empleado.salario;
+    double salarioDecrement = salarioActual * 20 / 100;
 
-  _empleadosList[empleado.id - 1].salario = salarioActual - salarioDecrement;
-  empleadoListSink.add(_empleadosList);
-}
+    _empleadosList[empleado.id - 1].salario = salarioActual - salarioDecrement;
+    empleadoListSink.add(_empleadosList);
+  }
 
 // * 7.- dispose
-void dispose() {
-  _empleadoSalarioIncrementStreamController.close();
-  _empleadoSalarioDecrementStreamController.close();
-  _empleadoListStreamController.close();
-}
+  void dispose() {
+    _empleadoSalarioIncrementStreamController.close();
+    _empleadoSalarioDecrementStreamController.close();
+    _empleadoListStreamController.close();
+  }
 }

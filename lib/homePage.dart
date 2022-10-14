@@ -35,8 +35,10 @@ class _HomePageState extends State<HomePage> {
                       children: <Widget>[
                         Container(
                           padding: EdgeInsets.all(20.0),
-                          child: Text("${snapshot.data![index].id}.",
-                              style: TextStyle(fontSize: 20.0)),
+                          child: Image.network(
+                              'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg'),
+                          width: 100,
+                          height: 100,
                         ),
                         Container(
                           padding: EdgeInsets.all(20.0),
@@ -71,6 +73,23 @@ class _HomePageState extends State<HomePage> {
                             },
                           ),
                         ),
+                        Container(
+                          child: Chip(
+                              avatar: CircleAvatar(
+                                backgroundColor: Colors.grey.shade800,
+                                child: const Text('SA'),
+                              ),
+                              label: Text(
+                                snapshot.data![index].salario > 1500
+                                    ? "COMPLETO"
+                                    : "INCOMPLETO",
+                                style: TextStyle(fontSize: 16.0),
+                              ),
+                              backgroundColor:
+                                  snapshot.data![index].salario > 1500
+                                      ? Colors.greenAccent
+                                      : Colors.redAccent),
+                        )
                       ],
                     ),
                   );
