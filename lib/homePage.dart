@@ -19,7 +19,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("App Empleado")),
+      appBar: AppBar(title: Text("App Empleadito")),
       body: Container(
         child: StreamBuilder<List<Empleado>>(
             stream: _empleadoBloc.empleadoListStream,
@@ -28,52 +28,17 @@ class _HomePageState extends State<HomePage> {
               return ListView.builder(
                 itemCount: snapshot.data?.length,
                 itemBuilder: (context, index) {
-                  return Card(
+                  return  Card(
                     elevation: 5.0,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: <Widget>[
-                        Container(
-                          padding: EdgeInsets.all(20.0),
-                          child: Text("${snapshot.data![index].id}.",
-                              style: TextStyle(fontSize: 20.0)),
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(20.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text("${snapshot.data![index].nombre}",
-                                  style: TextStyle(fontSize: 18.0)),
-                              Text(
-                                  "${snapshot.data![index].salario.ceilToDouble()} MN",
-                                  style: TextStyle(fontSize: 16.0)),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          child: IconButton(
-                            icon: Icon(Icons.thumb_up_alt),
-                            color: Colors.green,
-                            onPressed: () {
-                              _empleadoBloc.empleadoSalarioIncrement
-                                  .add(snapshot.data![index]);
-                            },
-                          ),
-                        ),
-                        Container(
-                          child: IconButton(
-                            icon: Icon(Icons.thumb_down_alt),
-                            color: Colors.red,
-                            onPressed: () {
-                              _empleadoBloc.empleadoSalarioDecrement
-                                  .add(snapshot.data![index]);
-                            },
-                          ),
-                        ),
-                      ],
+                    child: ListTile(
+                      leading: FlutterLogo(size: 56.0),
+                      title: Text(snapshot.data![index].nombre.toString()),
+                      subtitle: Text(snapshot.data![index].salario.toString()),
+                      trailing: Icon(Icons.more_vert),
                     ),
+                    
                   );
+
                 },
               );
             }),
